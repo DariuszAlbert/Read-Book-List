@@ -1,5 +1,8 @@
 import BookShow from "./BookShow";
 
+// component rendering det of BookShow component according to received book lisr
+// sending up and down (form App component to BookShow component and back ) onDelete and onEdit props
+
 function BookList({books, onDelete, onEdit}){
     const renderedBooks = books.map((book)=>{
 

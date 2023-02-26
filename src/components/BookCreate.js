@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-
+// component creating new book
+// receiving createBook prop from App component
+// sending title thru createBook prop to App component after form is submitted
+// setting input to empty string after submit
 
 function BookCreate( {createBook} ){
     const [title, setTitle] = useState('');

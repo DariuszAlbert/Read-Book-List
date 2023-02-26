@@ -1,12 +1,16 @@
 
 import { useState } from "react";
 
+// handling book editing
+// receiving book list
+// sending book.id and title to BookShow component
+
 function BookEdit({book, onSubmit }){
     const [title, setTitle] = useState(book.title);
 
     const handleChange = (event) => {
         setTitle(event.target.value);
-    }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,7 +27,7 @@ function BookEdit({book, onSubmit }){
 
         </form>
     </div>
-    )
-}
+    );
+};
 
 export default BookEdit;

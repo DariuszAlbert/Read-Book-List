@@ -7,15 +7,24 @@ import axios from "axios";
 function App() {
     const [books, setBooks] = useState([]);
 
+// -===find all books on server and set initial state===-
+
     const fetchBooks = async () => {
         const response = await axios.get("http://localhost:3001/books");
 
         setBooks(response.data); 
     };
 
+ // -=== run fetchBooks() every initial rendering ===-
+
     useEffect(()=>{
         fetchBooks();
-    }, [])
+    }, []);
+
+
+// -=== edit book in server stored (axios.put)file and updateing current state===-
+// receiving: id and new title form BookEdit component thru the props system 
+
 
     const editBookById = async (id, newTitle) => {
         const response = await axios.put(`http://localhost:3001/books/${id}`, {
@@ -31,6 +40,10 @@ function App() {
         setBooks(updateBooks);
     };
 
+// -=== delete book in server stored file (axios.delete) and updateing current state===-
+// receiving: id form BookShow component thru the props system 
+
+
     const deleteBookByID = async (id) => {
         const response = await axios.delete(`http://localhost:3001/books/${id}`);
         console.log(response.data);
@@ -39,6 +52,9 @@ function App() {
         });
         setBooks(updatedBooks);
     };
+
+// -=== creating book in server stored (axios.post) file and updateing current state===-
+// receiving: title form BookCreate component thru the props system 
 
     const createBook = async (title) => {
         const response = await axios.post('http://localhost:3001/books', {
