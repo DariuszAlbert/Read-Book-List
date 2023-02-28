@@ -16,7 +16,7 @@ function BookCreate( {createBook} ){
     const handleSubmit = (event) => {
         event.preventDefault();
         createBook(title);
-        setTitle('')
+        setTitle('');
         
     }
 

@@ -22,7 +22,7 @@ test('Component shows Label, Input and Button', ()=>{
     
 });
 
-test('it calls bookCreate when the form is submited and clears input', ()=>{
+test('it calls bookCreate when the form is submited and clears input', async ()=>{
 
      const mock = jest.fn();
 
@@ -61,7 +61,8 @@ test('if clear input after form is submitted', async ()=>{
 
 // if clears input after form is subitted
 
-   await waitFor(()=>expect(input).toHaveValue(''));
+//    await waitFor(()=>{expect(input).toHaveValue('')});
+expect(input).toHaveValue('');
 
 });
 
