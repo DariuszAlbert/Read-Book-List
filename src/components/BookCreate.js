@@ -5,31 +5,29 @@ import { useState } from "react";
 // sending title thru createBook prop to App component after form is submitted
 // setting input to empty string after submit
 
-function BookCreate( {createBook} ){
-    const [title, setTitle] = useState('');
+function BookCreate({ createBook }) {
+  const [title, setTitle] = useState("");
 
-    const handleChange = (event) => {
-        setTitle(event.target.value);
-        
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    createBook(title);
+    setTitle("");
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        createBook(title);
-        setTitle('');
-        
-    }
-
-    return (
+  return (
     <div className="book-create">
-        <h3>Add a Book</h3>
-        <form onSubmit={handleSubmit}>
-            <label>Title</label>
-            <input className="input" value={title} onChange={handleChange}/>
-            <button className="button">Create Book!</button>
-        </form>
+      <h3>Add a Book</h3>
+      <form onSubmit={handleSubmit}>
+        <label>Title</label>
+        <input
+          className="input"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        <button className="button">Create Book!</button>
+      </form>
     </div>
-    );
-};
+  );
+}
 
 export default BookCreate;
