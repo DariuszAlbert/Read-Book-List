@@ -1,55 +1,57 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import BookEdit from "./BookEdit";
+import BooksContext from "../context/books";
 
 // component responsible for rendering single book component
-// receiving: book list, onDelete and onEdit props 
+// receiving: book list, onDelete and onEdit props
 
-function BookShow({book, onDelete, onEdit}){
-    const [showEdit, setShowEdit]=useState(false);
+function BookShow({ book }) {
+  const [showEdit, setShowEdit] = useState(false);
+  const { deleteBookByID } = useContext(BooksContext);
 
-// sending book id thur prop system to App via onDelete prop    
+  // sending book id thur prop system to App via onDelete prop
 
-    const handleDeleteClick = ()=>{
-        onDelete(book.id);
-    };
+  const handleDeleteClick = () => {
+    deleteBookByID(book.id);
+  };
 
-// toggling showEdit state 
+  // toggling showEdit state
 
-    const handleEditClick=()=>{
-        setShowEdit(!showEdit);
-    };
+  const handleEditClick = () => {
+    setShowEdit(!showEdit);
+  };
 
+  // sending book id and newTitle received from BookEdit thru prop system to App via onEdit prop
+  // setting showEdit to false
+  const handleSubmit = () => {
+    setShowEdit(false);
+  };
 
-// sending book id and newTitle received from BookEdit thru prop system to App via onEdit prop  
-// setting showEdit to false    
-    const handleSubmit = (id, newTitle) => {
-        setShowEdit(false);
-        onEdit(id, newTitle);
-    };
+  let content = <h3>{book.title}</h3>;
 
+  // rendering BookEdit component when showEdit is set to true
 
-    let content = <h3>{book.title}</h3>
+  if (showEdit) {
+    content = <BookEdit book={book} onSubmit={handleSubmit} />;
+  }
 
-// rendering BookEdit component when showEdit is set to true    
-
-    if (showEdit){
-        content = <BookEdit book={book} onSubmit={handleSubmit} />
-    };
-
-    return( 
-
-        <div>
-            <div className="book-show">
-                <img src={`https://picsum.photos/seed/${book.title}/300/200`}alt="obrazek" />
-                <div>{content}</div>
-                <div className="actions">
-                    <button className="edit" onClick={handleEditClick}>Edit</button>
-                    <button className="delete" onClick={handleDeleteClick}></button>
-                </div>
-            </div>
+  return (
+    <div>
+      <div className="book-show">
+        <img
+          src={`https://picsum.photos/seed/${book.title}/300/200`}
+          alt="obrazek"
+        />
+        <div>{content}</div>
+        <div className="actions">
+          <button className="edit" onClick={handleEditClick}>
+            Edit
+          </button>
+          <button className="delete" onClick={handleDeleteClick}></button>
         </div>
-  
-    );
-};
- 
+      </div>
+    </div>
+  );
+}
+
 export default BookShow;

@@ -1,6 +1,7 @@
 .button,
 .input {
   align-items: center;
+
   -moz-appearance: none;
   -webkit-appearance: none;
   border: 1px solid transparent;
@@ -18,6 +19,7 @@
 
 .delete {
   -webkit-touch-callout: none;
+
   -moz-appearance: none;
   -webkit-appearance: none;
   background-color: hsla(0, 0%, 4%, 0.2);
@@ -74,7 +76,6 @@
   margin: 0;
   padding: 0;
 }
-
 h1,
 h2,
 h3,
@@ -84,11 +85,11 @@ h6 {
   font-size: 100%;
   font-weight: 400;
 }
-ul {
-  list-style: none;
-}
+
 button,
-input {
+input,
+select,
+textarea {
   margin: 0;
 }
 html {
@@ -98,10 +99,6 @@ html {
 :after,
 :before {
   box-sizing: inherit;
-}
-img {
-  height: auto;
-  max-width: 100%;
 }
 
 html {
@@ -118,10 +115,6 @@ html {
   overflow-y: scroll;
 }
 
-footer,
-header {
-  display: block;
-}
 body,
 button,
 input {
@@ -135,22 +128,6 @@ body {
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
-}
-a {
-  color: #485fc7;
-  cursor: pointer;
-  text-decoration: none;
-}
-a strong {
-  color: currentColor;
-}
-a:hover {
-  color: #363636;
-}
-
-img {
-  height: auto;
-  max-width: 100%;
 }
 
 .input {
@@ -172,8 +149,7 @@ img {
   color: rgba(54, 54, 54, 0.3);
 }
 .input:hover,
-.is-hovered.input,
-.is-hovered.textarea {
+.is-hovered.input {
   border-color: #b5b5b5;
 }
 .input:active,
@@ -186,9 +162,6 @@ img {
   box-shadow: inset 0 0.0625em 0.125em hsla(0, 0%, 4%, 0.05);
   max-width: 100%;
   width: 100%;
-}
-.input[readonly] {
-  box-shadow: none;
 }
 
 .footer {
@@ -256,6 +229,7 @@ img {
 }
 .book-edit button {
   margin: 10px 0;
+  background-color: #3ff7db;
 }
 .book-show {
   align-self: flex-start;
@@ -289,8 +263,7 @@ img {
   border-radius: 9999px;
   cursor: pointer;
   display: inline-block;
-  flex-grow: 0;
-  flex-shrink: 0;
+  flex: 0 1 auto;
   font-size: 0;
   height: 20px;
   max-height: 20px;
@@ -319,4 +292,8 @@ img {
   transform-origin: center center;
   width: 20px;
   z-index: 10;
+}
+
+.edit:hover {
+  background-color: hsla(0, 0%, 4%, 0.3);
 }

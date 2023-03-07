@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import BooksContext from "../context/books";
 
 // component creating new book
 // receiving createBook prop from App component
 // sending title thru createBook prop to App component after form is submitted
 // setting input to empty string after submit
 
-function BookCreate({ createBook }) {
+function BookCreate() {
   const [title, setTitle] = useState("");
+  const { createBook } = useContext(BooksContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
