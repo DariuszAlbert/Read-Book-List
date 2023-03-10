@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 import axios from "axios";
 
 const BooksContext = createContext();
@@ -7,11 +7,11 @@ function Provider({ children }) {
   const [books, setBooks] = useState([]);
   // -===find all books on server and set initial state===-
 
-  const fetchBooks = async () => {
+  const fetchBooks = useCallback(async () => {
     const response = await axios.get("http://localhost:3001/books");
 
     setBooks(response.data);
-  };
+  }, []);
 
   // -=== edit book in server stored (axios.put)file and updateing current state===-
   // receiving: id and new title form BookEdit component thru the props system
