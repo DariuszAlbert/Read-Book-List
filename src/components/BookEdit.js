@@ -6,7 +6,7 @@ import BooksContext from "../context/books";
 // sending book.id and title to BookShow component
 
 function BookEdit({ book, onSubmit }) {
-  const [title, setTitle] = useState(book.title);
+  const [title, setTitle] = useState("");
   const { editBookById } = useContext(BooksContext);
 
   const handleChange = (event) => {
@@ -24,7 +24,7 @@ function BookEdit({ book, onSubmit }) {
       <form className="book-edit" onSubmit={handleSubmit}>
         <label>New Title</label>
         <input className="input" value={title} onChange={handleChange}></input>
-        <button className="button is-primary">Save</button>
+        <button className="button is-primary">Save changes</button>
       </form>
     </div>
   );

@@ -1,20 +1,12 @@
 {
   "books": [
     {
-      "title": "asd",
-      "id": 13
+      "title": "Czarny Łabędź",
+      "id": 1
     },
     {
-      "title": "fff",
-      "id": 14
-    },
-    {
-      "title": "dfsv",
-      "id": 15
-    },
-    {
-      "title": "szzss",
-      "id": 16
+      "title": "Zero",
+      "id": 2
     }
   ]
 }

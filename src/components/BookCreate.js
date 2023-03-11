@@ -20,7 +20,7 @@ function BookCreate() {
     <div className="book-create">
       <h3>Add a Book</h3>
       <form onSubmit={handleSubmit}>
-        <label>Title</label>
+        <label className="label">Title</label>
         <input
           className="input"
           value={title}
