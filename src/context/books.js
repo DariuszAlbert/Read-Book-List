@@ -15,12 +15,28 @@ function Provider({ children }) {
     setBooks(response.data);
   }, []);
 
+  const fetchImage = async (imgName) => {
+    const imageResponse = await axios.get(API_URL, {
+      headers: {
+        Authorization: API_KEY,
+      },
+      params: {
+        query: imgName,
+        per_page: 1,
+      },
+    });
+
+    return imageResponse.data.results[0].urls.thumb;
+  };
+
   // -=== edit book in server stored (axios.put)file and updateing current state===-
   // receiving: id and new title form BookEdit component thru the props system
 
   const editBookById = async (id, newTitle) => {
+    const newURL = await fetchImage(newTitle);
     const response = await axios.put(`http://localhost:3001/books/${id}`, {
       title: newTitle,
+      url: newURL,
     });
 
     const updateBooks = books.map((book) => {
@@ -48,20 +64,11 @@ function Provider({ children }) {
   // receiving: title form BookCreate component thru the props system
 
   const createBook = async (title) => {
-    //  fetching title images  from Unsplash API
-    const imageResponse = await axios.get(API_URL, {
-      headers: {
-        Authorization: API_KEY,
-      },
-      params: {
-        query: title,
-        per_page: 1,
-      },
-    });
-
+    const url = await fetchImage(title);
+    console.log(url);
     const response = await axios.post("http://localhost:3001/books", {
       title,
-      url: imageResponse.data.results[0].urls.thumb,
+      url: url,
     });
 
     const updateTitle = [...books, response.data];
