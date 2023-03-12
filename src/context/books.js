@@ -2,6 +2,8 @@ import { createContext, useState, useCallback } from "react";
 import axios from "axios";
 
 const BooksContext = createContext();
+const API_URL = process.env.REACT_APP_API_URL;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 function Provider({ children }) {
   const [books, setBooks] = useState([]);
@@ -46,8 +48,20 @@ function Provider({ children }) {
   // receiving: title form BookCreate component thru the props system
 
   const createBook = async (title) => {
+    //  fetching title images  from Unsplash API
+    const imageResponse = await axios.get(API_URL, {
+      headers: {
+        Authorization: API_KEY,
+      },
+      params: {
+        query: title,
+        per_page: 1,
+      },
+    });
+
     const response = await axios.post("http://localhost:3001/books", {
       title,
+      url: imageResponse.data.results[0].urls.thumb,
     });
 
     const updateTitle = [...books, response.data];
@@ -55,7 +69,7 @@ function Provider({ children }) {
     setBooks(updateTitle);
   };
 
-  // creating object to share
+  // Value to share context object declaration
 
   const valueToShare = {
     books,

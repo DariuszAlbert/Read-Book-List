@@ -23,7 +23,7 @@ function BookShow({ book }) {
 
   // sending book id and newTitle received from BookEdit thru prop system to App via onEdit prop
   // setting showEdit to false
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     setShowEdit(false);
   };
 
@@ -38,10 +38,7 @@ function BookShow({ book }) {
   return (
     <div>
       <div className="book-show">
-        <img
-          src={`https://picsum.photos/seed/${book.title}/300/200`}
-          alt="obrazek"
-        />
+        <img src={book.url} alt="obrazek" />
         <div>{content}</div>
         <div className="actions">
           <button className="edit" onClick={handleEditClick}>
